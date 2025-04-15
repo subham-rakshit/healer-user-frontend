@@ -6,6 +6,7 @@ const ClientSignUpModal = ({
   closeModal,
   signInOpenModal,
   practitionerSignUpOpenModal,
+  clientSignUpFieldsOpenModal,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -38,6 +39,15 @@ const ClientSignUpModal = ({
 
     setTimeout(() => {
       practitionerSignUpOpenModal();
+    }, 200);
+  };
+
+  // Client Sign Up Fields Modal Open
+  const handleClientSignUpFields = () => {
+    handleClose();
+
+    setTimeout(() => {
+      clientSignUpFieldsOpenModal();
     }, 200);
   };
 
@@ -118,9 +128,10 @@ const ClientSignUpModal = ({
                 <button
                   type="button"
                   className="btn btn-primary primaryBtn__wr roundedPill_22__wr lh_150__wr py_10px__wr px_18px__wr border_w_1__wr w-100"
-                  data-toggle="modal"
-                  data-target="#signUp2Modal__wr"
-                  data-dismiss="modal"
+                  onClick={handleClientSignUpFields}
+                  // data-toggle="modal"
+                  // data-target="#signUp2Modal__wr"
+                  // data-dismiss="modal"
                 >
                   Sign up
                 </button>

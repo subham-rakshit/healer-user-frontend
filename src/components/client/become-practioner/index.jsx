@@ -4,18 +4,42 @@ import BecomePractitionerSignUpFields from "../auth/subComponents/BecomePractiti
 import SignInFormModal from "../auth/subComponents/SignInFormModal";
 import ClientSignUpModal from "../auth/subComponents/ClientSignUpModal";
 import ForgotPasswordModal from "../auth/subComponents/ForgotPasswordModal";
+import PractitionerCreateNewPassword from "../auth/subComponents/PractitionerCreateNewPassword";
+import PractitionerVerifyOTP from "../auth/subComponents/PractitionerVerifyOTP";
+import PractitionerPersonalSignUpModal from "../auth/subComponents/PractitionerPersonalSignUpModal";
+import ClientSignUpFieldsModal from "../auth/subComponents/ClientSignUpFieldsModal";
+import ClientCreateNewPasswordModal from "../auth/subComponents/ClientCreateNewPasswordModal";
+import ClientVerifyOTPModal from "../auth/subComponents/ClientVerifyOTPModal";
 
 const BecomePractionerPage = () => {
   const [isPractitionerSignUpModalOpen, setIsPractitionerSignUpModalOpen] =
-    useState(false);
-  const [
-    isPractitionerSignUpFieldsModalOpen,
-    setIsPractitionerSignUpFieldsModalOpen,
-  ] = useState(false);
-  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
-  const [isClientSignUpModal, setIsClientSignUpModal] = useState(false);
-  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
-    useState(false);
+      useState(false);
+    const [
+      isPractitionerSignUpFieldsModalOpen,
+      setIsPractitionerSignUpFieldsModalOpen,
+    ] = useState(false);
+    const [
+      isPractitionerCreateNewPasswordModalOpen,
+      setIsPractitionerCreateNewPasswordModalOpen,
+    ] = useState(false);
+    const [
+      isPractitionerVerifyOTPModalOpen,
+      setIsPractitionerVerifyOTPModalOpen,
+    ] = useState(false);
+    const [
+      isPractitionerPersonalSignUpModalOpen,
+      setIsPractitionerPersonalSignUpModalOpen,
+    ] = useState(false);
+    const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  
+    const [isClientSignUpModal, setIsClientSignUpModal] = useState(false);
+    const [isClientSignUpFieldsModalOpen, setIsClientSignUpFieldsModalOpen] =
+      useState(false);
+    const [isClientCreateNewPasswordModalOpen, setIsClientCreateNewPasswordModalOpen] =
+      useState(false);
+    const [isClientVerifyOTPModalOpen, setIsClientVerifyOTPModalOpen] = useState(false);
+    const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
+      useState(false);
 
   // Practitioner Sign Up Modal
   const handlePractitionerSignUpModalOpen = () => {
@@ -33,6 +57,30 @@ const BecomePractionerPage = () => {
     setIsPractitionerSignUpFieldsModalOpen(false);
   };
 
+  // Practitioner Create New Password Modal
+  const handleCreateNewPasswordModalOpen = () => {
+    setIsPractitionerCreateNewPasswordModalOpen(true);
+  };
+  const handleCreateNewPasswordModalClose = () => {
+    setIsPractitionerCreateNewPasswordModalOpen(false);
+  };
+
+  // Practitioner Verify OTP Modal
+  const handlePractitionerVerifyOTPModalOpen = () => {
+    setIsPractitionerVerifyOTPModalOpen(true);
+  };
+  const handlePractitionerVerifyOTPModalClose = () => {
+    setIsPractitionerVerifyOTPModalOpen(false);
+  };
+
+  // Practitioner Personal Sign Up Modal
+  const handlePractitionerPersonalSignUpModalOpen = () => {
+    setIsPractitionerPersonalSignUpModalOpen(true);
+  };
+  const handlePractitionerPersonalSignUpModalClose = () => {
+    setIsPractitionerPersonalSignUpModalOpen(false);
+  };
+
   // Sign In Modal
   const handleSignInModalOpen = () => {
     setIsSignInModalOpen(true);
@@ -47,6 +95,30 @@ const BecomePractionerPage = () => {
   };
   const handleClientSignUpModalClose = () => {
     setIsClientSignUpModal(false);
+  };
+
+  // Client Sign Up Fields Modal
+  const handleClientSignUpFieldsModalOpen = () => {
+    setIsClientSignUpFieldsModalOpen(true);
+  };
+  const handleClientSignUpFieldsModalClose = () => {
+    setIsClientSignUpFieldsModalOpen(false);
+  };
+
+  // Client Create New Password Modal
+  const handleClientCreateNewPasswordModalOpen = () => {
+    setIsClientCreateNewPasswordModalOpen(true);
+  };
+  const handleClientCreateNewPasswordModalClose = () => {
+    setIsClientCreateNewPasswordModalOpen(false);
+  };
+
+  // Client Verify OTP Modal
+  const handleClientVerifyOTPModalOpen = () => {
+    setIsClientVerifyOTPModalOpen(true);
+  };
+  const handleClientVerifyOTPModalClose = () => {
+    setIsClientVerifyOTPModalOpen(false);
   };
 
   // Forgot Password Modal
@@ -161,10 +233,34 @@ const BecomePractionerPage = () => {
         />
       )}
 
-      {/* Become Practitioner Sign Up Fields Modal Main */}
+      {/* Become Practitioner Sign Up Fields Modal */}
       {isPractitionerSignUpFieldsModalOpen && (
         <BecomePractitionerSignUpFields
           closeModal={handlePractitionerSignUpFieldsModalClose}
+          createNewPasswordOpenModal={handleCreateNewPasswordModalOpen}
+        />
+      )}
+
+      {/* Practitioner Create New Password Modal */}
+      {isPractitionerCreateNewPasswordModalOpen && (
+        <PractitionerCreateNewPassword
+          closeModal={handleCreateNewPasswordModalClose}
+          verifyOTPOpenModal={handlePractitionerVerifyOTPModalOpen}
+        />
+      )}
+
+      {/* Practitioner Verify OTP Modal */}
+      {isPractitionerVerifyOTPModalOpen && (
+        <PractitionerVerifyOTP
+          closeModal={handlePractitionerVerifyOTPModalClose}
+          personalSignUpOpenModal={handlePractitionerPersonalSignUpModalOpen}
+        />
+      )}
+
+      {/* Practitioner Personal Sign Up Modal */}
+      {isPractitionerPersonalSignUpModalOpen && (
+        <PractitionerPersonalSignUpModal
+          closeModal={handlePractitionerPersonalSignUpModalClose}
         />
       )}
 
@@ -184,6 +280,30 @@ const BecomePractionerPage = () => {
           closeModal={handleClientSignUpModalClose}
           signInOpenModal={handleSignInModalOpen}
           practitionerSignUpOpenModal={handlePractitionerSignUpModalOpen}
+          clientSignUpFieldsOpenModal={handleClientSignUpFieldsModalOpen}
+        />
+      )}
+
+      {/* Client Sign Up Fields Modal */}
+      {isClientSignUpFieldsModalOpen && (
+        <ClientSignUpFieldsModal
+          closeModal={handleClientSignUpFieldsModalClose}
+          createNewPasswordOpenModal={handleClientCreateNewPasswordModalOpen}
+        />
+      )}
+
+      {/* Client Create New Password Modal */}
+      {isClientCreateNewPasswordModalOpen && (
+        <ClientCreateNewPasswordModal
+          closeModal={handleClientCreateNewPasswordModalClose}
+          verifyOTPOpenModal={handleClientVerifyOTPModalOpen}
+        />
+      )}
+
+      {/* Client Verify OTP Modal */}
+      {isClientVerifyOTPModalOpen && (
+        <ClientVerifyOTPModal
+          closeModal={handleClientVerifyOTPModalClose}
         />
       )}
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
+const PractitionerCreateNewPassword = ({ closeModal, verifyOTPOpenModal }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -8,21 +8,19 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
     setIsVisible(true);
   }, []);
 
-  // Main Modal Close
   const handleClose = () => {
     setIsClosing(true);
-
     setTimeout(() => {
       closeModal();
     }, 300);
   };
 
-  // Sign In Modal Open
-  const handleSignIn = () => {
+  // Practitioner Verify OTP Modal Open
+  const handleVerifyOTP = () => {
     handleClose();
 
     setTimeout(() => {
-      signInOpenModal();
+      verifyOTPOpenModal();
     }, 200);
   };
 
@@ -31,7 +29,7 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
       className={`main-modal modal fade show ${isVisible ? "modal-show" : ""} ${
         isClosing ? "modal-closing" : ""
       }`}
-      id="forgotPassModal__wr"
+      id="practitionerNewPassModal__wr"
       style={{ display: "block" }}
       onClick={handleClose}
     >
@@ -40,7 +38,7 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <form className="modal-content">
-          <div className="modal-header">
+          <div className="modal-header text-center">
             <picture className="starIcon__wr">
               <img
                 src="/images/heelar-star-bg.svg"
@@ -53,10 +51,14 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
                 height="50"
               />
             </picture>
-            <h5 className="modal-title" id="forgotPassModalLabel">
-              Forgot Password
+            <h5 className="modal-title" id="practitionerNewPassModalLabel">
+              Create New Passowrd
             </h5>
-            <p>Please enter your email address</p>
+            <p>Password to include be a minimum of 8 characters.</p>
+            <p>
+              Include at least one capital letter, number and a special
+              character such as !@£$%^&*()
+            </p>
             <button
               type="button"
               className="close"
@@ -77,55 +79,45 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
               </span>
             </button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body signUpModalBodyOne__wr">
             <div className="form-row">
-              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 email__wr">
-                <label className="form-label">Email</label>
+              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pass__wr">
+                <label className="form-label">Password</label>
                 <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email address"
+                  type="password"
+                  className="form-control passField__wr"
+                  placeholder="Password"
                   autoComplete="off"
                   required=""
                 />
-                <span className="envelopeIcon__wr">
-                  <img
-                    src="/images/form-email-icon.svg"
-                    loading="lazy"
-                    decoding="async"
-                    className="img-fluid"
-                    alt=""
-                    title=""
-                    width="20"
-                    height="20"
-                  />
+                <span data-tag="passField__wr" className="togglePass__wr">
+                  <i className="fa-regular fa-eye-slash"></i>
+                </span>
+              </div>
+              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pass__wr cnfPass__wr">
+                <label className="form-label">Confirm Password</label>
+                <input
+                  type="password"
+                  className="form-control passConfField__wr"
+                  placeholder="Confirm Password"
+                  autoComplete="off"
+                  required=""
+                />
+                <span data-tag="passConfField__wr" className="togglePass__wr">
+                  <i className="fa-regular fa-eye-slash"></i>
                 </span>
               </div>
               <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btnParent__wr">
                 <button
                   type="button"
                   className="btn btn-primary primaryBtn__wr roundedPill_22__wr lh_150__wr py_10px__wr px_18px__wr border_w_1__wr w-100"
-                  data-toggle="modal"
-                  data-target="#passOTPModal__wr"
-                  data-dismiss="modal"
+                  onClick={handleVerifyOTP}
+                  // data-toggle="modal"
+                  // data-target="#practitionerOTPModal__wr"
+                  // data-dismiss="modal"
                 >
                   Continue
                 </button>
-              </div>
-              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 redirectLink__wr clientLogin__wr text-center">
-                <p>
-                  Back to&nbsp;
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-
-                      handleSignIn();
-                    }}
-                  >
-                    Login
-                  </a>
-                </p>
               </div>
             </div>
           </div>
@@ -135,4 +127,4 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
   );
 };
 
-export default ForgotPasswordModal;
+export default PractitionerCreateNewPassword;

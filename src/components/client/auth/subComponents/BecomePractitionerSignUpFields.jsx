@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const BecomePractitionerSignUpFields = ({ closeModal }) => {
+const BecomePractitionerSignUpFields = ({ closeModal, createNewPasswordOpenModal }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -13,6 +13,14 @@ const BecomePractitionerSignUpFields = ({ closeModal }) => {
     setTimeout(() => {
       closeModal();
     }, 300);
+  };
+
+  const handleCreateNewPassword = () => {
+    handleClose();
+
+    setTimeout(() => {
+      createNewPasswordOpenModal();
+    }, 200);
   };
 
   return (
@@ -147,9 +155,10 @@ const BecomePractitionerSignUpFields = ({ closeModal }) => {
                   <button
                     type="button"
                     className="btn btn-primary primaryBtn__wr roundedPill_22__wr lh_150__wr py_10px__wr px_18px__wr border_w_1__wr w-100"
-                    data-toggle="modal"
-                    data-target="#practitionerNewPassModal__wr"
-                    data-dismiss="modal"
+                    onClick={handleCreateNewPassword}
+                    // data-toggle="modal"
+                    // data-target="#practitionerNewPassModal__wr"
+                    // data-dismiss="modal"
                   >
                     Continue
                   </button>

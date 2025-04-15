@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
+const ClientSignUpFieldsModal = ({
+  closeModal,
+  createNewPasswordOpenModal,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -8,21 +11,19 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
     setIsVisible(true);
   }, []);
 
-  // Main Modal Close
   const handleClose = () => {
     setIsClosing(true);
-
     setTimeout(() => {
       closeModal();
     }, 300);
   };
 
-  // Sign In Modal Open
-  const handleSignIn = () => {
+  // Client Create New Password Modal Open
+  const handleCreateNewPassword = () => {
     handleClose();
 
     setTimeout(() => {
-      signInOpenModal();
+      createNewPasswordOpenModal();
     }, 200);
   };
 
@@ -31,7 +32,7 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
       className={`main-modal modal fade show ${isVisible ? "modal-show" : ""} ${
         isClosing ? "modal-closing" : ""
       }`}
-      id="forgotPassModal__wr"
+      id="signUp2Modal__wr"
       style={{ display: "block" }}
       onClick={handleClose}
     >
@@ -53,10 +54,10 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
                 height="50"
               />
             </picture>
-            <h5 className="modal-title" id="forgotPassModalLabel">
-              Forgot Password
+            <h5 className="modal-title" id="signUp2ModalLabel">
+              Sign-up
             </h5>
-            <p>Please enter your email address</p>
+            <p>Enter your details</p>
             <button
               type="button"
               className="close"
@@ -77,8 +78,18 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
               </span>
             </button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body signUpModalBodyTwo__wr">
             <div className="form-row">
+              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 phNo__wr">
+                <label className="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  className="form-control contactNumber__wr"
+                  placeholder="Phone number"
+                  autoComplete="off"
+                  required=""
+                />
+              </div>
               <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 email__wr">
                 <label className="form-label">Email</label>
                 <input
@@ -101,31 +112,59 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
                   />
                 </span>
               </div>
+              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 confEmail__wr">
+                <label className="form-label">Confirm Email</label>
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="Email address"
+                  autoComplete="off"
+                  required=""
+                />
+                <span className="envelopeIcon__wr">
+                  <img
+                    src="/images/form-email-icon.svg"
+                    loading="lazy"
+                    decoding="async"
+                    className="img-fluid"
+                    alt=""
+                    title=""
+                    width="20"
+                    height="20"
+                  />
+                </span>
+              </div>
+              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 drop__wr lang__wr">
+                <label className="form-label">Prefered Language</label>
+                <select className="form-control" required="">
+                  <option value="English">English</option>
+                  <option value="Arabic">Arabic</option>
+                  <option value="Hindi">Hindi</option>
+                </select>
+                <span className="chevDownIcon__wr">
+                  <img
+                    src="/images/chevron-down-grey-icon.svg"
+                    loading="lazy"
+                    decoding="async"
+                    className="img-fluid"
+                    alt="arrow-icon"
+                    title="arrow-icon"
+                    width="20"
+                    height="20"
+                  />
+                </span>
+              </div>
               <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 btnParent__wr">
                 <button
                   type="button"
                   className="btn btn-primary primaryBtn__wr roundedPill_22__wr lh_150__wr py_10px__wr px_18px__wr border_w_1__wr w-100"
-                  data-toggle="modal"
-                  data-target="#passOTPModal__wr"
-                  data-dismiss="modal"
+                  onClick={handleCreateNewPassword}
+                  // data-toggle="modal"
+                  // data-target="#newPassModal__wr"
+                  // data-dismiss="modal"
                 >
                   Continue
                 </button>
-              </div>
-              <div className="form-group col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 redirectLink__wr clientLogin__wr text-center">
-                <p>
-                  Back to&nbsp;
-                  <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-
-                      handleSignIn();
-                    }}
-                  >
-                    Login
-                  </a>
-                </p>
               </div>
             </div>
           </div>
@@ -135,4 +174,4 @@ const ForgotPasswordModal = ({ closeModal, signInOpenModal }) => {
   );
 };
 
-export default ForgotPasswordModal;
+export default ClientSignUpFieldsModal;
